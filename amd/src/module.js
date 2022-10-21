@@ -25,9 +25,7 @@
 
 const tinymce = window.tinymce;
 
-export const init_editor = (elementid) => {
-  tinymce.init({
-    selector: 'textarea#' + elementid,
-    promotion: false
-  });
+export const init_editor = (options) => {
+  tinymce.init(options);
 };
+

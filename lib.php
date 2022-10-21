@@ -89,7 +89,17 @@ class tinymceplus_texteditor extends texteditor {
 
         $PAGE->requires->js($this->get_tinymceplus_base_url('tinymce.min.js'));
 
-        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$elementid]);
+        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid)]);
+    }
+
+    public function get_init_params($elementid) {
+        $params = [
+            'selector' => 'textarea#' . $elementid,
+            'promotion' => false,
+            'menubar' => false,
+            'plugins' => ['code', 'link'],
+        ];
+        return $params;
     }
 
 
