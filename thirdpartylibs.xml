@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+  <library>
+    <location>tiny_mce</location>
+    <name>TinyMCE</name>
+    <license>MIT</license>
+    <version>6.2.0</version>
+    <licenseversion></licenseversion>
+  </library>
+</libraries>
