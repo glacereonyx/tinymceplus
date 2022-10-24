@@ -98,6 +98,11 @@ class tinymceplus_texteditor extends texteditor {
             'promotion' => false,
             'menubar' => false,
             'plugins' => ['code', 'link'],
+            'toolbar' => [
+                'undo redo | styles | underline bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link',
+                 'code'
+                ],
+
         ];
         return $params;
     }
