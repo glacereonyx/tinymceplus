@@ -21,4 +21,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['customtoolbar'] = 'Editor toolbar';
+$string['customtoolbar_desc'] = 'Each line contains a list of space separated buttons. The pipe | character is used to separate groups of objects.<br/>See <a href="{$a}" target="_blank">{$a}</a> for the list of default TinyMCE buttons. Please note that you will only be able to use buttons available to the open source version of TinyMCE.';
 $string['pluginname'] = 'TinyMCE Plus';
+$string['settings'] = 'General settings';
+

@@ -93,18 +93,61 @@ class tinymceplus_texteditor extends texteditor {
     }
 
     public function get_init_params($elementid) {
+
+        $config = get_config('editor_tinymceplus');
+
         $params = [
             'selector' => 'textarea#' . $elementid,
             'promotion' => false,
             'menubar' => false,
-            'plugins' => ['code', 'link'],
-            'toolbar' => [
-                'undo redo | styles | underline bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link',
-                 'code'
-                ],
+            'plugins' => ['code', 'link', 'lists'],
+            'toolbar' => [''],
 
         ];
+
+        // Set the customtoolbar based on config.
+        if (!empty($config->customtoolbar) && $customtoolbar = self::parse_toolbar_setting($config->customtoolbar)) {
+            $params['toolbar'] = $customtoolbar;
+        }
+
         return $params;
+    }
+
+    /**
+     * Convert the toolbar config string into something usable by TinyMCE
+     */
+    public static function parse_toolbar_setting($customtoolbar) : array {
+        $result = [];
+
+        $customtoolbar = trim($customtoolbar);
+        if ($customtoolbar === '') {
+            return $result;
+        }
+
+        $customtoolbar = str_replace("\r", "\n", $customtoolbar);
+        $customtoolbar = strtolower($customtoolbar);
+
+        $i = 0;
+        foreach (explode("\n", $customtoolbar) as $line) {
+
+            // Replace all characters that arent alphanumeric, underscore, pipe, hyphen or space with a space.
+            $line = preg_replace('/[^a-z0-9_ \|\-]/', ' ', $line);
+            $line = str_replace('|', ' | ', $line); // Make sure all pipes have a space around them.
+            $line = preg_replace('/  +/', ' ', $line); // Replace double spaces with a single space.
+            $line = trim($line, ' |'); // Trim extra spaces and pipes from line.
+
+            if ($line === '') {
+                continue;
+            }
+            if ($i == 10) {
+                // Maximum is ten lines, merge the rest to the last line.
+                $result[9] = $result[9].' '.$line;
+            } else {
+                $result[] = $line;
+                $i++;
+            }
+        }
+        return $result;
     }
 
 
