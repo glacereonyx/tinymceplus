@@ -102,7 +102,7 @@ class tinymceplus_texteditor extends texteditor {
             'menubar' => false,
             'plugins' => ['code', 'link', 'lists'],
             'toolbar' => [''],
-
+            'branding' => ($config->showbranding == 1) ? true : false,
         ];
 
         // Set the customtoolbar based on config.

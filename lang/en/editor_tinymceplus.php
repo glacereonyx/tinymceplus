@@ -25,4 +25,6 @@ $string['customtoolbar'] = 'Editor toolbar';
 $string['customtoolbar_desc'] = 'Each line contains a list of space separated buttons. The pipe | character is used to separate groups of objects.<br/>See <a href="{$a}" target="_blank">{$a}</a> for the list of default TinyMCE buttons. Please note that you will only be able to use buttons available to the open source version of TinyMCE.';
 $string['pluginname'] = 'TinyMCE Plus';
 $string['settings'] = 'General settings';
+$string['showbranding'] = 'Show branding';
+$string['showbranding_desc'] = 'Should the TinyMCE logo be shown on the bottom right of the editor? Please read <a href="{$a}" target="_blank">{$a}</a> before changing this setting.';
 

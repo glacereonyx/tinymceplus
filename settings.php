@@ -32,13 +32,24 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_heading('tinymcegeneralheader', new lang_string('settings'), ''));
     $default = "undo redo | styles | underline bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link
 code";
+
+    // Toolbar settings.
     $settings->add(
       new admin_setting_configtextarea('editor_tinymceplus/customtoolbar',
       get_string('customtoolbar', 'editor_tinymceplus'),
       get_string('customtoolbar_desc', 'editor_tinymceplus',
-      'https://www.tiny.cloud/docs/tinymce/6/available-toolbar-buttons/'
-      ), $default, PARAM_RAW, 100, 8
+      'https://www.tiny.cloud/docs/tinymce/6/available-toolbar-buttons/'),
+      $default, PARAM_RAW, 100, 8
     ));
+
+    // Show TinyMCE branding.
+    $settings->add(
+      new admin_setting_configcheckbox('editor_tinymceplus/showbranding',
+        get_string('showbranding', 'editor_tinymceplus'),
+        get_string('showbranding_desc', 'editor_tinymceplus',
+          'https://www.tiny.cloud/legal/attribution-requirements/'),
+        1
+        ));
 
 }
 
