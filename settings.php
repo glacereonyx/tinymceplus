@@ -29,8 +29,7 @@ $settings = new admin_settingpage('editorsettingstinymceplus', new lang_string('
 if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_heading('tinymcegeneralheader', new lang_string('settings'), ''));
-    $default = "undo redo | styles | underline bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link
-code";
+    $default = 'undo redo | blocks | underline bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table | link code | searchreplace wordcount';
 
     // Toolbar settings.
     $settings->add(

@@ -93,16 +93,46 @@ class tinymceplus_texteditor extends texteditor {
     }
 
     public function get_init_params($elementid) {
+        global $CFG, $PAGE;
+
+        $directionality = get_string('thisdirection', 'langconfig');
+        $strtime        = get_string('strftimetime');
+        $strdateabbr   = get_string('strftimedatemonthabbr', 'langconfig');
+        $strdate        = get_string('strftimedaydate');
+        $lang = current_language();
 
         $config = get_config('editor_tinymceplus');
 
         $params = [
             'selector' => 'textarea#' . $elementid,
             'promotion' => false,
-            'menubar' => false,
-            'plugins' => ['code', 'link', 'lists'],
-            'toolbar' => [''],
             'branding' => ($config->showbranding == 1) ? true : false,
+            'menubar' => false,
+            'relative_urls' => false,
+            'document_base_url' => $CFG->wwwroot,
+            'language' => $lang,
+            'directionality' => $directionality,
+            'min_height' => 250,
+            'max_height' => 500,
+
+            // Remove options that should be controlled by Moodle theme.
+            'block_formats' => 'Heading (large)=h3; Heading (medium)=h4; Heading (small)=h5; Preformatted=pre; Paragraph=p;',
+            'custom_colors' => false,
+            'font_family_formats' => '',
+            'font_size_formats' => '',
+            'line_height_formats' => '',
+            'removed_menuitems' => 'newdocument print',
+
+            // Toolbar & Plugin config.
+            'toolbar' => [''], // Do not set values here. They will be overriden by parse_toolbar_setting.
+            'plugins' => ['code', 'directionality', 'insertdatetime', 'link', 'lists',
+                    'quickbars', 'searchreplace', 'table', 'visualblocks', 'visualchars', 'wordcount'],
+            'insertdatetime_dateformat' => $strdate,
+            'insertdatetime_timeformat' => $strtime,
+            'insertdatetime_formats' => [$strtime, $strdateabbr, $strdate],
+            'quickbars_insert_toolbar' => false,
+            'quickbars_image_toolbar' => false,
+            'quickbars_selection_toolbar' => 'underline bold italic | bullist numlist | outdent indent',
         ];
 
         // Set the customtoolbar based on config.
