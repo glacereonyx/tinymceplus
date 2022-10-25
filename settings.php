@@ -18,7 +18,6 @@
  * @package   editor_tinymceplus
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
- * @copyright (c) 2022 Instant Online (https://instantonline.nz/) <support@instantonline.nz>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
