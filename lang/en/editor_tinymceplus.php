@@ -28,4 +28,6 @@ $string['privacy:metadata'] = 'The TinyMCEPlus HTML editor plugin does not store
 $string['settings'] = 'General settings';
 $string['showbranding'] = 'Show branding';
 $string['showbranding_desc'] = 'Should the TinyMCE logo be shown on the bottom right of the editor? Please read <a href="{$a}" target="_blank">{$a}</a> before changing this setting.';
+$string['useeditorcss'] = 'Use editor CSS';
+$string['useeditorcss_desc'] = 'Should Moodle\'s CSS styles be applied to the text editor?<br/> This is disabled by default because for some themes it doesn\'t look very good.';
 

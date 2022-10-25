@@ -135,6 +135,11 @@ class tinymceplus_texteditor extends texteditor {
             'quickbars_selection_toolbar' => 'underline bold italic | bullist numlist | outdent indent',
         ];
 
+        if ($config->useeditorcss == 1) {
+            $contentcss = $PAGE->theme->editor_css_url()->out(false);
+            $params ['content_css'] = $contentcss;
+        }
+
         // Set the customtoolbar based on config.
         if (!empty($config->customtoolbar) && $customtoolbar = self::parse_toolbar_setting($config->customtoolbar)) {
             $params['toolbar'] = $customtoolbar;

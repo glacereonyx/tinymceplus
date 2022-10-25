@@ -49,6 +49,14 @@ if ($ADMIN->fulltree) {
         1
         ));
 
+    // Use editorCSS.
+    $settings->add(
+      new admin_setting_configcheckbox('editor_tinymceplus/useeditorcss',
+      get_string('useeditorcss', 'editor_tinymceplus'),
+      get_string('useeditorcss_desc', 'editor_tinymceplus'),
+      0
+    ));
+
 }
 
 $ADMIN->add('editortinymceplus', $settings);
