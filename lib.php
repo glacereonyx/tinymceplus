@@ -108,6 +108,7 @@ class tinymceplus_texteditor extends texteditor {
             'promotion' => false,
             'branding' => ($config->showbranding == 1) ? true : false,
             'menubar' => false,
+            'contextmenu' => false,
             'relative_urls' => false,
             'remove_script_host' => false,
             'document_base_url' => $CFG->wwwroot,
