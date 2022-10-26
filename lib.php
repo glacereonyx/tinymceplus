@@ -112,8 +112,6 @@ class tinymceplus_texteditor extends texteditor {
             'document_base_url' => $CFG->wwwroot,
             'language' => $lang,
             'directionality' => $directionality,
-            'min_height' => 250,
-            'max_height' => 500,
 
             // Remove options that should be controlled by Moodle theme.
             'block_formats' => 'Heading (large)=h3; Heading (medium)=h4; Heading (small)=h5; Preformatted=pre; Paragraph=p;',

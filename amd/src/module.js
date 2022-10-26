@@ -33,6 +33,14 @@ const YUI = window.YUI;
  */
 export const init_editor = (options, foptions) => {
 
+  // Set the min height to be the height of the texeditor.
+  const initheight = document.querySelector(options.selector)?.offsetHeight;
+  options.min_height = initheight || 200;
+  options.min_height += 25;
+
+  // Initialize the editor at the minheight.
+  options.height = options.min_height;
+
   // Run extra setup on the editor instance
   options.setup = (editor) => {
     editor.fileOptions = foptions;
@@ -55,7 +63,7 @@ export const init_editor = (options, foptions) => {
  * @returns {Promise}
  */
 const image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
-// TODO: Write an implementation to work around Moodle's filepicker.js popup.
+  // TODO: Write an implementation to work around Moodle's filepicker.js popup.
 });
 
 /**
@@ -65,25 +73,25 @@ const image_upload_handler = (blobInfo, progress) => new Promise((resolve, rejec
  * @param {object} meta
  */
 const file_picker_callback = (callback, value, meta) => {
-console.log(typeof value, typeof meta);
-const fileOptions = tinymce.activeEditor.fileOptions;
+  console.log(typeof value, typeof meta);
+  const fileOptions = tinymce.activeEditor.fileOptions;
 
   YUI().use('core_filepicker', function (Y) { // Using repository/filepicker.js
 
-  let options = null;
+    let options = null;
 
-  if (meta.filetype == 'image') {
-    options = fileOptions['image'];
-  }
+    if (meta.filetype == 'image') {
+      options = fileOptions['image'];
+    }
 
-  options.formcallback = (fileInfo) => {
-    callback(fileInfo.url);
-  };
+    options.formcallback = (fileInfo) => {
+      callback(fileInfo.url);
+    };
 
-  // TODO: See if we need this.
-  // options.editor_target = win.document.getElementById(target_id);
+    // TODO: See if we need this.
+    // options.editor_target = win.document.getElementById(target_id);
 
-  M.core_filepicker.show(Y, options);
+    M.core_filepicker.show(Y, options);
 
-});
+  });
 };
