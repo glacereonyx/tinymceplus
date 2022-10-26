@@ -82,6 +82,10 @@ const file_picker_callback = (callback, value, meta) => {
 
     if (meta.filetype == 'image') {
       options = fileOptions['image'];
+    } else if (meta.filetype == 'file') {
+      options = fileOptions['file'];
+    } else if (meta.filetype == 'media') {
+      options = fileOptions['media'];
     }
 
     options.formcallback = (fileInfo) => {

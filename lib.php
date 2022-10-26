@@ -126,13 +126,14 @@ class tinymceplus_texteditor extends texteditor {
             // Toolbar & Plugin config.
             'toolbar' => [''], // Do not set values here. They will be overriden by parse_toolbar_setting.
             'plugins' => ['code', 'directionality', 'image', 'insertdatetime', 'link', 'lists',
-                    'quickbars', 'searchreplace', 'table', 'visualblocks', 'visualchars', 'wordcount'],
+                    'media', 'quickbars', 'searchreplace', 'table', 'visualblocks', 'visualchars', 'wordcount'],
             'insertdatetime_dateformat' => $strdate,
             'insertdatetime_timeformat' => $strtime,
             'insertdatetime_formats' => [$strtime, $strdateabbr, $strdate],
             'quickbars_insert_toolbar' => false,
             'quickbars_image_toolbar' => false,
             'quickbars_selection_toolbar' => 'underline bold italic | bullist numlist | outdent indent',
+            'media_poster' => false,
         ];
 
         if ($config->useeditorcss == 1) {
