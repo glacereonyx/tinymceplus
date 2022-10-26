@@ -89,7 +89,7 @@ class tinymceplus_texteditor extends texteditor {
 
         $PAGE->requires->js($this->get_tinymceplus_base_url('tinymce.min.js'));
 
-        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid)]);
+        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $fpoptions]);
     }
 
     public function get_init_params($elementid) {
@@ -125,7 +125,7 @@ class tinymceplus_texteditor extends texteditor {
 
             // Toolbar & Plugin config.
             'toolbar' => [''], // Do not set values here. They will be overriden by parse_toolbar_setting.
-            'plugins' => ['code', 'directionality', 'insertdatetime', 'link', 'lists',
+            'plugins' => ['code', 'directionality', 'image', 'insertdatetime', 'link', 'lists',
                     'quickbars', 'searchreplace', 'table', 'visualblocks', 'visualchars', 'wordcount'],
             'insertdatetime_dateformat' => $strdate,
             'insertdatetime_timeformat' => $strtime,

@@ -24,7 +24,66 @@
  */
 
 const tinymce = window.tinymce;
+const YUI = window.YUI;
 
-export const init_editor = (options) => {
+/**
+ * Initializes a TinyMCE editor instance.
+ * @param {Array} options
+ * @param {Array} foptions
+ */
+export const init_editor = (options, foptions) => {
+
+  // Run extra setup on the editor instance
+  options.setup = (editor) => {
+    editor.fileOptions = foptions;
+  };
+
+  // TODO: Implement the image upload handler.
+  // options.images_upload_handler = image_upload_handler;
+
+  options.file_picker_callback = file_picker_callback;
+  options.file_picker_types = 'image'; // TODO: add media and file
+
   tinymce.init(options);
+
+};
+
+/**
+ * Uses Moodle's AJAX plugin to upload images using a web service.
+ * @param {string} blobInfo
+ * @param {number} progress
+ * @returns {Promise}
+ */
+const image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
+// TODO: Write an implementation to work around Moodle's filepicker.js popup.
+});
+
+/**
+ * Integrates the Moodle's repository/filepicker.js with TinyMCE
+ * @param {requestCallback} callback
+ * @param {string} value
+ * @param {object} meta
+ */
+const file_picker_callback = (callback, value, meta) => {
+console.log(typeof value, typeof meta);
+const fileOptions = tinymce.activeEditor.fileOptions;
+
+  YUI().use('core_filepicker', function (Y) { // Using repository/filepicker.js
+
+  let options = null;
+
+  if (meta.filetype == 'image') {
+    options = fileOptions['image'];
+  }
+
+  options.formcallback = (fileInfo) => {
+    callback(fileInfo.url);
+  };
+
+  // TODO: See if we need this.
+  // options.editor_target = win.document.getElementById(target_id);
+
+  M.core_filepicker.show(Y, options);
+
+});
 };
