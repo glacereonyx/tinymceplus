@@ -85,6 +85,7 @@ const file_picker_callback = (callback, value, meta) => {
     }
 
     options.formcallback = (fileInfo) => {
+      console.log(fileInfo);
       callback(fileInfo.url);
     };
 
