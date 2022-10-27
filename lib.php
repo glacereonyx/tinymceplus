@@ -89,12 +89,12 @@ class tinymceplus_texteditor extends texteditor {
      * @param array $options
      * @param array $foptions
      */
-    public function use_editor($elementid, ?array $options = null, $fpoptions = null) {
+    public function use_editor($elementid, ?array $options = null, $foptions = null) {
         global $PAGE;
 
         $PAGE->requires->js($this->get_tinymceplus_base_url('tinymce.min.js'));
 
-        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $fpoptions]);
+        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $foptions]);
     }
 
     /**
