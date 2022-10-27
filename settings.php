@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Configures the admin settings for TinyMCEPlus.
+ *
  * @package   editor_tinymceplus
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
@@ -29,7 +31,8 @@ $settings = new admin_settingpage('editorsettingstinymceplus', new lang_string('
 if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_heading('tinymcegeneralheader', new lang_string('settings'), ''));
-    $default = 'undo redo | blocks | underline bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table | link code | searchreplace wordcount';
+    $default = 'undo redo | blocks | underline bold italic | alignleft aligncenter alignright alignjustify | '
+              .'bullist numlist | outdent indent | table | link code | searchreplace wordcount';
 
     // Toolbar settings.
     $settings->add(

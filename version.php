@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Version informationf for editor_tinymceplus
  * @package   editor_tinymceplus
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell

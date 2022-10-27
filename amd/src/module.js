@@ -81,11 +81,11 @@ const file_picker_callback = (callback, value, meta) => {
     let options = null;
 
     if (meta.filetype == 'image') {
-      options = fileOptions['image'];
+      options = fileOptions.image;
     } else if (meta.filetype == 'file') {
-      options = fileOptions['file'];
+      options = fileOptions.file;
     } else if (meta.filetype == 'media') {
-      options = fileOptions['media'];
+      options = fileOptions.media;
     }
 
     options.formcallback = (fileInfo) => {

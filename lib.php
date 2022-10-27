@@ -15,18 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Library file for editor_tinymceplus
+ *
  * @package   editor_tinymceplus
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- /**
-  * Configuration for the tinymceplus texteditor
-  */
+/**
+ * Configuration for the tinymceplus texteditor
+ */
 class tinymceplus_texteditor extends texteditor {
     /** @var string active version. Used as the directory name to get the tinymce code. */
-    protected string $version = '6.2.0';
+    protected $version = '6.2.0';
 
     /**
      * Gets the active version. Used as the directory name to get the tinymce code.
@@ -83,6 +85,9 @@ class tinymceplus_texteditor extends texteditor {
 
     /**
      * Use this editor for given element.
+     * @param string $elementid
+     * @param array $options
+     * @param array $foptions
      */
     public function use_editor($elementid, ?array $options = null, $fpoptions = null) {
         global $PAGE;
@@ -92,6 +97,10 @@ class tinymceplus_texteditor extends texteditor {
         $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $fpoptions]);
     }
 
+    /**
+     * Generates editor init params for a specific editor element.
+     * @param string $elementid
+     */
     public function get_init_params($elementid) {
         global $CFG, $PAGE;
 
@@ -151,6 +160,7 @@ class tinymceplus_texteditor extends texteditor {
 
     /**
      * Convert the toolbar config string into something usable by TinyMCE
+     * @param string $customtoolbar
      */
     public static function parse_toolbar_setting($customtoolbar) : array {
         $result = [];
