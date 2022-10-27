@@ -1,6 +1,6 @@
 name: Moodle Plugin CI
 
-on: [push, pull_request]
+on: [workflow_dispatch, pull_request]
 
 jobs:
   test:
@@ -99,9 +99,9 @@ jobs:
         if: ${{ always() }}
         run: moodle-plugin-ci mustache
 
-      - name: Grunt
-        if: ${{ always() }}
-        run: moodle-plugin-ci grunt --max-lint-warnings 0
+#       - name: Grunt
+#         if: ${{ always() }}
+#         run: moodle-plugin-ci grunt --max-lint-warnings 0
 
       - name: PHPUnit tests
         if: ${{ always() }}
