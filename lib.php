@@ -102,6 +102,12 @@ class tinymceplus_texteditor extends texteditor {
 
         $compiler = new core_scss();
         $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
+        $compiler->setVariables([
+            'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
+            'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
+            'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),
+            'primary-btn-text' => get_config('editor_tinymceplus', 'theme_primary_btn_text'),
+        ]);
         $css = '';
         try {
             $css = $compiler->to_css();

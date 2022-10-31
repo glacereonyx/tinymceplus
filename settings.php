@@ -30,7 +30,8 @@ $ADMIN->add('editorsettings', new admin_category('editortinymceplus', $editor->d
 $settings = new admin_settingpage('editorsettingstinymceplus', new lang_string('settings', 'editor_tinymceplus'));
 if ($ADMIN->fulltree) {
 
-    $settings->add(new admin_setting_heading('tinymcegeneralheader', new lang_string('settings'), ''));
+    $settings->add(new admin_setting_heading('tinymceplusgeneralheader', new lang_string('settings'), ''));
+
     $default = 'undo redo | blocks | underline bold italic | alignleft aligncenter alignright alignjustify | '
               .'bullist numlist | outdent indent | table | link code | searchreplace wordcount';
 
@@ -59,6 +60,29 @@ if ($ADMIN->fulltree) {
       get_string('useeditorcss_desc', 'editor_tinymceplus'),
       0
     ));
+
+    // Theming options.
+    $settings->add(new admin_setting_heading('tinymceplusthemeheader', new lang_string('theme'), ''));
+    $settings->add(new admin_setting_configcolourpicker('editor_tinymceplus/theme_toolbar_btn_hover',
+    get_string('theme:toolbar_btn_hover', 'editor_tinymceplus'),
+    get_string('theme:toolbar_btn_hover_desc', 'editor_tinymceplus'),
+    '#cce2fa'
+    ) );
+    $settings->add(new admin_setting_configcolourpicker('editor_tinymceplus/theme_primary_btn',
+    get_string('theme:primary_btn', 'editor_tinymceplus'),
+    get_string('theme:primary_btn_desc', 'editor_tinymceplus'),
+    '#0054b4'
+    ) );
+    $settings->add(new admin_setting_configcolourpicker('editor_tinymceplus/theme_primary_btn_hover',
+    get_string('theme:primary_btn_hover', 'editor_tinymceplus'),
+    get_string('theme:primary_btn_hover_desc', 'editor_tinymceplus'),
+    '#0060ce'
+    ) );
+    $settings->add(new admin_setting_configcolourpicker('editor_tinymceplus/theme_primary_btn_text',
+    get_string('theme:primary_btn_text', 'editor_tinymceplus'),
+    get_string('theme:primary_btn_text_desc', 'editor_tinymceplus'),
+    '#fff'
+    ) );
 
 }
 

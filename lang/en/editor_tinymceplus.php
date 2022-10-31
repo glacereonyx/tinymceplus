@@ -30,6 +30,14 @@ $string['privacy:metadata'] = 'The TinyMCEPlus HTML editor plugin does not store
 $string['settings'] = 'General settings';
 $string['showbranding'] = 'Show branding';
 $string['showbranding_desc'] = 'Should the TinyMCE logo be shown on the bottom right of the editor? Please read <a href="{$a}" target="_blank">{$a}</a> before changing this setting.';
+$string['theme:toolbar_btn_hover'] = 'Toolbar button hover';
+$string['theme:toolbar_btn_hover_desc'] = 'The colour displayed behind toolbar buttons when they are hovered.';
+$string['theme:primary_btn'] = 'Primary button';
+$string['theme:primary_btn_desc'] = "The colour of primary buttons such as 'save' as well as some text.";
+$string['theme:primary_btn_hover'] = 'Primary button hover';
+$string['theme:primary_btn_hover_desc'] = 'The colour primary buttons turn when hovered by the mouse.';
+$string['theme:primary_btn_text'] = 'Primary button text';
+$string['theme:primary_btn_text_desc'] = 'The colour of text on primary buttons';
 $string['useeditorcss'] = 'Use editor CSS';
 $string['useeditorcss_desc'] = 'Should Moodle\'s CSS styles be applied to the text editor?<br/> This is disabled by default because for some themes it doesn\'t look very good.';
 
