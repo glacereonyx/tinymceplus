@@ -13,7 +13,7 @@ $secondary-btn-hover:#f0f0f0 !default;
 $secondary-btn-text:#222f3e !default;
 
 // Misc.
-$active-text-color: #3c1752 !default;
+$active-text-color: $primary-btn !default;
 
 // ----The styles. ----
 .tox .tox-tbtn:hover {
