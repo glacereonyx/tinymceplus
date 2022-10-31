@@ -100,22 +100,7 @@ class tinymceplus_texteditor extends texteditor {
 
         $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $foptions]);
 
-        $compiler = new core_scss();
-        $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
-        $compiler->setVariables([
-            'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
-            'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
-            'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),
-            'primary-btn-text' => get_config('editor_tinymceplus', 'theme_primary_btn_text'),
-        ]);
-        $css = '';
-        try {
-            $css = $compiler->to_css();
-        } catch (\Exception $e) {
-            debugging('Error while compiling editor SCSS: ' . $e->getMessage(), DEBUG_DEVELOPER);
-        }
-
-        $PAGE->requires->js_call_amd('editor_tinymceplus/cssbarge', 'cssinject', [$css]);
+        $PAGE->requires->js_call_amd('editor_tinymceplus/cssbarge', 'cssinject', [$this->generate_css()]);
 
     }
 
@@ -180,6 +165,29 @@ class tinymceplus_texteditor extends texteditor {
         }
 
         return $params;
+    }
+
+    /**
+     * Generates the CSS for the editor using sass.
+     */
+    public function generate_css() {
+        global $CFG;
+
+        $compiler = new core_scss();
+        $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
+        $compiler->setVariables([
+            'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
+            'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
+            'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),
+            'primary-btn-text' => get_config('editor_tinymceplus', 'theme_primary_btn_text'),
+        ]);
+        $css = '';
+        try {
+            $css = $compiler->to_css();
+        } catch (\Exception $e) {
+            debugging('Error while compiling editor SCSS: ' . $e->getMessage(), DEBUG_DEVELOPER);
+        }
+        return $css;
     }
 
     /**
