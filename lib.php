@@ -27,6 +27,11 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot.'/lib/csslib.php');
 
+function editor_tinymceplus_reset_css_cache() {
+    $csscache = new \editor_tinymceplus\cache\css();
+    $css = $csscache->flush_css();
+}
+
 /**
  * Configuration for the tinymceplus texteditor
  */
@@ -100,7 +105,10 @@ class tinymceplus_texteditor extends texteditor {
 
         $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $foptions]);
 
-        $PAGE->requires->js_call_amd('editor_tinymceplus/cssbarge', 'cssinject', [$this->generate_css()]);
+        $csscache = new \editor_tinymceplus\cache\css();
+        $css = $csscache->get_css();
+
+        $PAGE->requires->js_call_amd('editor_tinymceplus/cssbarge', 'cssinject', [$csscache->get_css()]);
 
     }
 
@@ -165,29 +173,6 @@ class tinymceplus_texteditor extends texteditor {
         }
 
         return $params;
-    }
-
-    /**
-     * Generates the CSS for the editor using sass.
-     */
-    public function generate_css() {
-        global $CFG;
-
-        $compiler = new core_scss();
-        $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
-        $compiler->setVariables([
-            'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
-            'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
-            'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),
-            'primary-btn-text' => get_config('editor_tinymceplus', 'theme_primary_btn_text'),
-        ]);
-        $css = '';
-        try {
-            $css = $compiler->to_css();
-        } catch (\Exception $e) {
-            debugging('Error while compiling editor SCSS: ' . $e->getMessage(), DEBUG_DEVELOPER);
-        }
-        return $css;
     }
 
     /**

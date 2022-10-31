@@ -15,14 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version informationf for editor_tinymceplus
- * @package   editor_tinymceplus
+ * Cache definition file for editor_tinymceplus.
+ *
+ * @package   editor_tinymcepluc
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
+ * @copyright (c) 2022 Instant Online (https://instantonline.nz/) <support@instantonline.nz>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+declare(strict_types=1);
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022110100;
-$plugin->requires  = 2021051710;
-$plugin->component = 'editor_tinymceplus';
+$definitions = [
+  'css' => [
+    'mode' => cache_store::MODE_APPLICATION,
+    'simplekeys' => true,
+    'requiredataguarantee' => false,
+    'staticacceleration' => true,
+    'datasource' => '\editor_tinymceplus\cache\css',
+  ],
+];
+
