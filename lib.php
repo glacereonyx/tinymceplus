@@ -145,6 +145,8 @@ class tinymceplus_texteditor extends texteditor {
             'document_base_url' => $CFG->wwwroot,
             'language' => $lang,
             'directionality' => $directionality,
+            'paste_data_images' => false,
+            'paste_block_drop' => true,
 
             // Remove options that should be controlled by Moodle theme.
             'block_formats' => 'Heading (large)=h3; Heading (medium)=h4; Heading (small)=h5; Preformatted=pre; Paragraph=p;',
