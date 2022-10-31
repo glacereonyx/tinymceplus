@@ -23,6 +23,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
+require_once($CFG->dirroot.'/lib/csslib.php');
+
 /**
  * Configuration for the tinymceplus texteditor
  */
@@ -90,11 +94,23 @@ class tinymceplus_texteditor extends texteditor {
      * @param array $foptions
      */
     public function use_editor($elementid, ?array $options = null, $foptions = null) {
-        global $PAGE;
+        global $CFG, $PAGE;
 
         $PAGE->requires->js($this->get_tinymceplus_base_url('tinymce.min.js'));
 
         $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $foptions]);
+
+        $compiler = new core_scss();
+        $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
+        $css = '';
+        try {
+            $css = $compiler->to_css();
+        } catch (\Exception $e) {
+            debugging('Error while compiling editor SCSS: ' . $e->getMessage(), DEBUG_DEVELOPER);
+        }
+
+        $PAGE->requires->js_call_amd('editor_tinymceplus/cssbarge', 'cssinject', [$css]);
+
     }
 
     /**
