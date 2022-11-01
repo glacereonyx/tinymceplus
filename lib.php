@@ -107,7 +107,8 @@ class tinymceplus_texteditor extends texteditor {
 
         $PAGE->requires->js($this->get_tinymceplus_base_url('tinymce.min.js'));
 
-        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor', [$this->get_init_params($elementid), $foptions]);
+        $PAGE->requires->js_call_amd('editor_tinymceplus/module', 'init_editor',
+            [$this->get_init_params($elementid, $options), $foptions]);
 
         $csscache = new \editor_tinymceplus\cache\css();
         $css = $csscache->get_css();
@@ -120,7 +121,7 @@ class tinymceplus_texteditor extends texteditor {
      * Generates editor init params for a specific editor element.
      * @param string $elementid
      */
-    public function get_init_params($elementid) {
+    public function get_init_params($elementid, ?array $options = null) {
         global $CFG, $PAGE;
 
         $directionality = get_string('thisdirection', 'langconfig');
@@ -144,6 +145,7 @@ class tinymceplus_texteditor extends texteditor {
             'directionality' => $directionality,
             'paste_data_images' => false,
             'paste_block_drop' => true,
+            'enable_filemanagement' => $options['enable_filemanagement'] || false,
 
             // Remove options that should be controlled by Moodle theme.
             'block_formats' => 'Heading (large)=h3; Heading (medium)=h4; Heading (small)=h5; Preformatted=pre; Paragraph=p;',

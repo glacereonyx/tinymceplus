@@ -41,16 +41,22 @@ export const init_editor = (options, foptions) => {
   // Initialize the editor at the minheight.
   options.height = options.min_height;
 
-  // Run extra setup on the editor instance
-  options.setup = (editor) => {
-    editor.fileOptions = foptions;
-  };
+  if (options.enable_filemanagement == true) {
+    if (foptions !== null) {
+      // Run extra setup on the editor instance
+      options.setup = (editor) => {
+        editor.fileOptions = foptions;
+      };
 
-  // TODO: Implement the image upload handler.
-  // options.images_upload_handler = image_upload_handler;
+      // TODO: Implement the image upload handler.
+      // options.images_upload_handler = image_upload_handler;
 
-  options.file_picker_callback = file_picker_callback;
-  options.file_picker_types = 'image'; // TODO: add media and file
+      options.file_picker_callback = file_picker_callback;
+      options.file_picker_types = 'image'; // TODO: add media and file
+    } else {
+      console.warn('enable_filemanagement is true, however no "fileoptions" have been provided to the texteditor.');
+    }
+  }
 
   tinymce.init(options);
 
@@ -73,7 +79,6 @@ const image_upload_handler = (blobInfo, progress) => new Promise((resolve, rejec
  * @param {object} meta
  */
 const file_picker_callback = (callback, value, meta) => {
-  console.log(typeof value, typeof meta);
   const fileOptions = tinymce.activeEditor.fileOptions;
 
   YUI().use('core_filepicker', function (Y) { // Using repository/filepicker.js
