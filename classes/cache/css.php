@@ -40,27 +40,38 @@ use moodle_exception;
 /**
  * CSS cache definition for editor_tinymceplus.
  */
-class css implements cache_data_source
-{
+class css implements cache_data_source {
 
     /** @var css */
     protected static $instance = null;
 
-    public static function get_instance_for_cache(cache_definition $definition): css
-    {
+    /**
+     * Returns an instance of the data source class that the cache can use for loading data using the other methods
+     * specified by this interface.
+     *
+     * @param cache_definition $definition
+     * @return object
+     */
+    public static function get_instance_for_cache(cache_definition $definition): css {
         if (is_null(self::$instance)) {
             self::$instance = new css();
         }
         return self::$instance;
     }
 
-    public function get_css()
-    {
+    /**
+     * Returns the processed CSS.
+     * @return string
+     */
+    public function get_css() {
         return $this->get_data_cache()->get('css');
     }
 
-    public function flush_css()
-    {
+    /**
+     * Deletes the cached CSS so that it will be rebuilt from sass on next cache load.
+     * @return void
+     */
+    public function flush_css() {
         return $this->get_data_cache()->delete('css');
     }
 
@@ -68,14 +79,18 @@ class css implements cache_data_source
      * Get an instance of this data cache.
      * @return cache_application|cache_session|cache_store the blockconfig cache we are using.
      */
-    protected function get_data_cache()
-    {
+    protected function get_data_cache() {
         // Do not double cache here because it may break cache resetting.
         return cache::make('editor_tinymceplus', 'css');
     }
 
-    public function load_for_cache($key = 'css')
-    {
+    /**
+     * Loads the data for the key provided ready formatted for caching.
+     *
+     * @param string|int $key The key to load.
+     * @return mixed What ever data should be returned, or false if it can't be loaded.
+     */
+    public function load_for_cache($key = 'css') {
         if ($key !== 'css') {
             throw new coding_exception('invalid cache key. only css is valid');
         }
@@ -83,10 +98,10 @@ class css implements cache_data_source
     }
 
     /**
-     * Generates the CSS for the editor using sass.
+     * Generates the CSS for the editor using sass and the colour values passed in via the admin config.
+     * @return string
      */
-    private function generate_css()
-    {
+    private function generate_css() {
         global $CFG;
 
         $compiler = new core_scss();
@@ -106,8 +121,10 @@ class css implements cache_data_source
         return $css;
     }
 
-    public function load_many_for_cache(array $keys)
-    {
+    /**
+     * NOT USED. This cache does not store more than one object.
+     */
+    public function load_many_for_cache(array $keys) {
         throw new coding_exception('Cache does not support loading multiple keys.');
     }
 }

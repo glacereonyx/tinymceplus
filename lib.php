@@ -27,6 +27,10 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot.'/lib/csslib.php');
 
+/**
+ * Resets the CSS cache for TinyMCEPlus.
+ * @return void
+ */
 function editor_tinymceplus_reset_css_cache() {
     $csscache = new \editor_tinymceplus\cache\css();
     $css = $csscache->flush_css();
