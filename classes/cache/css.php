@@ -123,6 +123,7 @@ class css implements cache_data_source {
 
     /**
      * NOT USED. This cache does not store more than one object.
+     * @param array $keys NOT USED.
      */
     public function load_many_for_cache(array $keys) {
         throw new coding_exception('Cache does not support loading multiple keys.');

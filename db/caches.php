@@ -17,7 +17,7 @@
 /**
  * Cache definition file for editor_tinymceplus.
  *
- * @package   editor_tinymcepluc
+ * @package   editor_tinymceplus
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
