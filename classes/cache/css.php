@@ -19,7 +19,6 @@
  * @package   editor_tinymceplus
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
- * @copyright (c) 2022 Instant Online (https://instantonline.nz/) <support@instantonline.nz>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,7 +28,7 @@ namespace editor_tinymceplus\cache;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/lib/csslib.php');
+require_once($CFG->dirroot . '/lib/csslib.php');
 
 use cache;
 use cache_data_source;
@@ -41,23 +40,27 @@ use moodle_exception;
 /**
  * CSS cache definition for editor_tinymceplus.
  */
-class css implements cache_data_source {
+class css implements cache_data_source
+{
 
     /** @var css */
     protected static $instance = null;
 
-    public static function get_instance_for_cache(cache_definition $definition): css {
+    public static function get_instance_for_cache(cache_definition $definition): css
+    {
         if (is_null(self::$instance)) {
             self::$instance = new css();
         }
         return self::$instance;
     }
 
-    public function get_css() {
+    public function get_css()
+    {
         return $this->get_data_cache()->get('css');
     }
 
-    public function flush_css() {
+    public function flush_css()
+    {
         return $this->get_data_cache()->delete('css');
     }
 
@@ -65,12 +68,14 @@ class css implements cache_data_source {
      * Get an instance of this data cache.
      * @return cache_application|cache_session|cache_store the blockconfig cache we are using.
      */
-    protected function get_data_cache() {
+    protected function get_data_cache()
+    {
         // Do not double cache here because it may break cache resetting.
         return cache::make('editor_tinymceplus', 'css');
     }
 
-    public function load_for_cache($key = 'css') {
+    public function load_for_cache($key = 'css')
+    {
         if ($key !== 'css') {
             throw new coding_exception('invalid cache key. only css is valid');
         }
@@ -80,16 +85,17 @@ class css implements cache_data_source {
     /**
      * Generates the CSS for the editor using sass.
      */
-    private function generate_css() {
+    private function generate_css()
+    {
         global $CFG;
 
         $compiler = new core_scss();
         $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
         $compiler->setVariables([
-        'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
-        'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
-        'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),
-        'primary-btn-text' => get_config('editor_tinymceplus', 'theme_primary_btn_text'),
+            'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
+            'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
+            'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),
+            'primary-btn-text' => get_config('editor_tinymceplus', 'theme_primary_btn_text'),
         ]);
         $css = '';
         try {
@@ -100,8 +106,8 @@ class css implements cache_data_source {
         return $css;
     }
 
-    public function load_many_for_cache(array $keys) {
+    public function load_many_for_cache(array $keys)
+    {
         throw new coding_exception('Cache does not support loading multiple keys.');
     }
 }
-

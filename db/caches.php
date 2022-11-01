@@ -20,7 +20,6 @@
  * @package   editor_tinymcepluc
  * @author    Ben Mitchell
  * @copyright (c) 2022 Ben Mitchell
- * @copyright (c) 2022 Instant Online (https://instantonline.nz/) <support@instantonline.nz>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -37,4 +36,3 @@ $definitions = [
     'datasource' => '\editor_tinymceplus\cache\css',
   ],
 ];
-
