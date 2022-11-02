@@ -72,12 +72,23 @@ export const init_editor = (options, foptions) => {
       console.log(`The ${e.command} command was fired.`);
       sync_textarea(editor);
     });
+
+    const target = editor.getElement();
+
     editor.on('SetContent', function(e) {
-      const target = editor.getElement();
       if (target.textContent != editor.getContent()){
         sync_textarea(editor);
       }
     });
+
+    // Listen for readonly changes on the initial textarea.
+    target.addEventListener('form:editorUpdated', function() {
+      if (target.readOnly) {
+        editor.mode.set('readonly');
+        return;
+      }
+      editor.mode.set('design');
+  });
   };
   options.hidden_input = false;
 
