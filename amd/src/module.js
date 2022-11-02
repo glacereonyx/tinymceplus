@@ -26,6 +26,11 @@
 const tinymce = window.tinymce;
 const YUI = window.YUI;
 
+/** A list of ExecCommands that should be ignored when triggering the input event on the original textarea */
+const inputUpdateBlacklist = [
+  'mceFocus', 'mceWordCount', 'mceMedia', 'mceLink', 'mceCodeEditor', 'SelectAll'
+];
+
 /**
  * Initializes a TinyMCE editor instance.
  * @param {Array} options
@@ -43,11 +48,6 @@ export const init_editor = (options, foptions) => {
 
   if (options.enable_filemanagement == true) {
     if (foptions !== null) {
-      // Run extra setup on the editor instance
-      options.setup = (editor) => {
-        editor.fileOptions = foptions;
-      };
-
       // TODO: Implement the image upload handler.
       // options.images_upload_handler = image_upload_handler;
 
@@ -58,9 +58,45 @@ export const init_editor = (options, foptions) => {
     }
   }
 
+  // Run extra setup on the editor instance
+  options.setup = (editor) => {
+    editor.fileOptions = foptions;
+
+    editor.on('input', function (e) {
+      sync_textarea(editor);
+    });
+    editor.on('ExecCommand', function (e) {
+      if (inputUpdateBlacklist.indexOf(e.command) != -1) { // Return early if this is a blacklisted command.
+        return;
+      }
+      console.log(`The ${e.command} command was fired.`);
+      sync_textarea(editor);
+    });
+    editor.on('SetContent', function(e) {
+      const target = editor.getElement();
+      if (target.textContent != editor.getContent()){
+        sync_textarea(editor);
+      }
+    });
+  };
+  options.hidden_input = false;
+
   tinymce.init(options);
 
 };
+
+/**
+ * Syncs the attatched textarea with the content of TinyMCE. Also sends an input event from the textarea.
+ * @param {object} editor A reference to the editor object.
+ */
+function sync_textarea(editor) {
+  if (!editor) {
+    return;
+  }
+ const target = editor.getElement();
+ target.textContent = editor.getContent();
+ target.dispatchEvent(new Event('input', {bubbles:true}));
+}
 
 /**
  * Uses Moodle's AJAX plugin to upload images using a web service.
