@@ -33,7 +33,7 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_heading('tinymceplusgeneralheader', new lang_string('settings'), ''));
 
     $default = 'undo redo | blocks | underline bold italic | alignleft aligncenter alignright alignjustify | '
-              .'bullist numlist | outdent indent | table | link code | searchreplace wordcount';
+              .'bullist numlist | outdent indent | table | image file media | link code | searchreplace wordcount';
 
     // Toolbar settings.
     $settings->add(
