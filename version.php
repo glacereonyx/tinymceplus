@@ -23,6 +23,6 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022110100;
+$plugin->version   = 2022110300;
 $plugin->requires  = 2021051710;
 $plugin->component = 'editor_tinymceplus';
