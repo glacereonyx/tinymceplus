@@ -119,8 +119,8 @@ class tinymceplus_texteditor extends texteditor {
 
     /**
      * Generates editor init params for a specific editor element.
-     * @param string $elementid
-     * @param ?array $options
+     * @param string $elementid The id of the element to bind TinyMCE to.
+     * @param array $options Array of editor options
      */
     public function get_init_params($elementid, ?array $options = null) {
         global $CFG, $PAGE;
