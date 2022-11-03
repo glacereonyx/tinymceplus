@@ -1,5 +1,6 @@
 # TinyMCEPlus
 ![Moodle CI Build Status](https://github.com/glacereonyx/tinymceplus/actions/workflows/moodle-ci.yml/badge.svg)
+
 TinyMCEPlus brings back the TinyMCE integration for Moodle with an up to date version of TinyMCE. This text editor has a modern sleek look, and has many quality of life improvements over Moodle's Atto text editor.
 
 You may prefer to use TinyMCEPlus if you are experiencing formatting or other issues with Atto, or just want to provide a improved user experience.
