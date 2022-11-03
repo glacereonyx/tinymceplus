@@ -63,6 +63,17 @@ if ($ADMIN->fulltree) {
 
     // Theming options.
     $settings->add(new admin_setting_heading('tinymceplusthemeheader', new lang_string('theme'), ''));
+
+    $range = range(0, 20);
+    array_walk($range, fn(&$value, $key) => $value .= 'px');
+    $options = array_combine($range, $range);
+    $setting = new admin_setting_configselect('editor_tinymceplus/theme_editor_border_radius',
+    get_string('theme:editor_border_radius', 'editor_tinymceplus'),
+    get_string('theme:editor_border_radius_desc', 'editor_tinymceplus'),
+    '5px', $options);
+    $setting->set_updatedcallback('editor_tinymceplus_reset_css_cache');
+    $settings->add($setting);
+
     $setting = new admin_setting_configcolourpicker('editor_tinymceplus/theme_toolbar_btn_hover',
     get_string('theme:toolbar_btn_hover', 'editor_tinymceplus'),
     get_string('theme:toolbar_btn_hover_desc', 'editor_tinymceplus'),

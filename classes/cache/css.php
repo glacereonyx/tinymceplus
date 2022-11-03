@@ -107,6 +107,7 @@ class css implements cache_data_source {
         $compiler = new core_scss();
         $compiler->set_file($CFG->dirroot . '/lib/editor/tinymceplus/styles.scss');
         $compiler->setVariables([
+            'editor-border-radius' => get_config('editor_tinymceplus', 'theme_editor_border_radius'),
             'toolbar-btn-hover' => get_config('editor_tinymceplus', 'theme_toolbar_btn_hover'),
             'primary-btn' => get_config('editor_tinymceplus', 'theme_primary_btn'),
             'primary-btn-hover' => get_config('editor_tinymceplus', 'theme_primary_btn_hover'),

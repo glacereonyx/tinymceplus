@@ -14,8 +14,13 @@ $secondary-btn-text:#222f3e !default;
 
 // Misc.
 $active-text-color: $primary-btn !default;
+$editor-border-radius: 5px !default;
 
 // ----The styles. ----
+.tox-tinymce {
+  border-radius: $editor-border-radius !important;
+}
+
 .tox .tox-tbtn:hover {
   background-color: $toolbar-btn-hover !important;
 }

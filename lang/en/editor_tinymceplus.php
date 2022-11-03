@@ -30,6 +30,8 @@ $string['privacy:metadata'] = 'The TinyMCEPlus HTML editor plugin does not store
 $string['settings'] = 'General settings';
 $string['showbranding'] = 'Show branding';
 $string['showbranding_desc'] = 'Should the TinyMCE logo be shown on the bottom right of the editor? Please read <a href="{$a}" target="_blank">{$a}</a> before changing this setting.';
+$string['theme:editor_border_radius'] = 'Editor border radius';
+$string['theme:editor_border_radius_desc'] = 'Defines how rounded the corners of the editor are.';
 $string['theme:toolbar_btn_hover'] = 'Toolbar button hover';
 $string['theme:toolbar_btn_hover_desc'] = 'The colour displayed behind toolbar buttons when they are hovered.';
 $string['theme:primary_btn'] = 'Primary button';
