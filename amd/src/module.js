@@ -90,7 +90,7 @@ export const init_editor = (options, foptions) => {
       editor.mode.set('design');
   });
   };
-  options.hidden_input = false;
+  // options.hidden_input = true;
 
   tinymce.init(options);
 
@@ -107,6 +107,7 @@ function sync_textarea(editor) {
  const target = editor.getElement();
  target.textContent = editor.getContent();
  target.dispatchEvent(new Event('input', {bubbles:true}));
+ target.dispatchEvent(new Event('change', {bubbles:true}));
 }
 
 /**
