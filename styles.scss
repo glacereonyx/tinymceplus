@@ -25,6 +25,10 @@ $editor-border-radius: 5px !default;
   background-color: $toolbar-btn-hover !important;
 }
 
+.tox .tox-tbtn--enabled {
+  background-color: $toolbar-btn-hover !important;
+}
+
 .tox .tox-tbtn:focus {
   background-color: $toolbar-btn-hover !important;
 }
